@@ -52,7 +52,7 @@ public class SaveAvatarSceneBackupOnUpload : IVRCSDKPreprocessAvatarCallback
 
             if(!AssetDatabase.IsValidFolder(backupDirectory))
             {
-                Debug.Log($"Backup Scene On Upload: {backupDirectory} doesn't exist. Creating.");
+                Debug.Log($"<b>Backup Scene On Upload</b>: {backupDirectory} doesn't exist. Creating.");
                 string createFolderResult = AssetDatabase.CreateFolder(sceneDirectory, backupFolderName);
                 if(string.IsNullOrWhiteSpace(createFolderResult))
                     throw new Exception("Failed to create backup folder. Skipping backup.");
@@ -62,7 +62,7 @@ public class SaveAvatarSceneBackupOnUpload : IVRCSDKPreprocessAvatarCallback
             string finalSceneName = sceneNameFormat.Replace("{dateTime}", nowString).Replace("{sceneName}", sceneName);
             string finalSceneAssetPath = $"{backupDirectory}/{finalSceneName}.unity";
 
-            Debug.Log($"Backup Scene On Upload: Creating scene backup of scene <b>{sceneName}</b> at <b>{finalSceneAssetPath}</b>");
+            Debug.Log($"<b>Backup Scene On Upload</b>: Creating scene backup of scene <b>{sceneName}</b> at <b>{finalSceneAssetPath}</b>");
             if(!AssetDatabase.CopyAsset(avatarScenePath, finalSceneAssetPath))
                 throw new Exception("Failed to copy scene asset");
         }
