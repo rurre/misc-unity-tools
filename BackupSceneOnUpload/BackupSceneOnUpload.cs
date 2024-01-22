@@ -1,6 +1,6 @@
 /// SaveAvatarSceneBackupOnUpload.cs by Pumkin
 /// https://github.com/rurre/misc-unity-tools
-/// Basic scene backing up system. Creates a backup of your scene when uploading an Avatar to VRC.
+/// Basic scene backing up system. Creates a backup of your scene when uploading an Avatar to VRC
 
 #if UNITY_EDITOR && VRC_SDK_VRCSDK3
 using System;
@@ -39,6 +39,9 @@ public class SaveAvatarSceneBackupOnUpload : IVRCSDKPreprocessAvatarCallback
 
     public bool OnPreprocessAvatar(GameObject avatarGameObject)
     {
+        if(!BackupsEnabled)
+            return true;
+
         try
         {
             string avatarScenePath = avatarGameObject.scene.path;
